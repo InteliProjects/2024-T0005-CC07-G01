@@ -1,0 +1,12 @@
+---
+services:
+  enderecos:
+    image: guilhermenl/usuarios:latest 
+    container_name: usuarios 
+    environment:
+      - DATABASE_URL=<URL>
+      - DATABASE_USER=<USER>
+      - DATABASE_PASSWORD=<PASSWORD>
+      - SERVER_PORT=8084
+    ports:
+      - 8084:8084

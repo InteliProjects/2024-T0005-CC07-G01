@@ -1,0 +1,12 @@
+---
+services:
+  enderecos:
+    image: guilhermenl/usuarios_pj:latest 
+    container_name: usuarios_pj 
+    environment:
+      - DATABASE_URL=<URL>
+      - DATABASE_USER=<USER>
+      - DATABASE_PASSWORD=<PASSWORD>
+      - SERVER_PORT=8086
+    ports:
+      - 8086:8086

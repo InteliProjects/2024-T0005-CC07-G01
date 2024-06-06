@@ -1,0 +1,9 @@
+deployment:
+  name: planos-deployment
+app:
+  name: planos 
+  image: guilhermenl/planos:latest
+  port: 8082
+  nodePort: 30082
+service:
+  name: planos-service

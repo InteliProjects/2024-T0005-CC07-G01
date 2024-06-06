@@ -1,0 +1,12 @@
+---
+services:
+  planos:
+    image: guilhermenl/planos:latest 
+    container_name: planos 
+    environment:
+      - DATABASE_URL=<URL>
+      - DATABASE_USER=<USER>
+      - DATABASE_PASSWORD=<PASSWORD>
+      - SERVER_PORT=8082
+    ports:
+      - 8082:8082

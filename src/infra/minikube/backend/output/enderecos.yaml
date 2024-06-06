@@ -1,0 +1,54 @@
+---
+# Source: BackendChart/templates/deployment.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: enderecos-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: enderecos
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+      nodePort: 30081
+---
+# Source: BackendChart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enderecos
+  labels:
+    app: enderecos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: enderecos
+  template:
+    metadata:
+      labels:
+        app: enderecos
+    spec:
+      containers:
+        - name: enderecos
+          image: guilhermenl/enderecos:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef: 
+                  name: backend-config-map
+                  key: dbUrl
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef: 
+                  name: backend-secret
+                  key: username 
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef: 
+                  name: backend-secret
+                  key: password

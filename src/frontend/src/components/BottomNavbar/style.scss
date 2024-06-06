@@ -1,0 +1,50 @@
+$main-container: #f5f5f5;
+$vivo-main: #660099;
+
+.bottom-navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: $vivo-main;
+  height: 60px; // Ajuste conforme necessário
+  z-index: 1000;
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em; // Ajuste o tamanho da fonte conforme necessário
+    padding: 10px;
+  }
+}
+
+// Certifique-se de que o resto do conteúdo da página não seja coberto pela barra de navegação
+.container {
+  padding-bottom: 60px; // Igual à altura da barra de navegação
+}
+
+@media (min-width: 431px) {
+  .bottom-navbar {
+    display: none; // Oculta a barra de navegação inferior em telas maiores
+  }
+}
+
+.icon-home {
+    fill: #A1A1A1; // Ou qualquer outra propriedade SVG que você deseja estilizar
+  }
+
+.icon-profile {
+   color: #A1A1A1; // Define a cor do ícone
+   font-size: 24px; // Aumenta o tamanho do ícone
+   margin-bottom: 4px; // Adiciona uma margem abaixo do ícone
+}
+
+.icon-notes {
+    font-size: 20px; // Ou outro tamanho conforme necessário
+    color: #A1A1A1; // Ou qualquer outra cor conforme o design
+  }

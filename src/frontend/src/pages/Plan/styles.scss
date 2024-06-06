@@ -1,0 +1,130 @@
+$main-container: #f5f5f5;
+$vivo-main: #660099;
+$border-container: rgba(0, 0, 0, 0.34);
+$text1-color: rgba(0, 0, 0, 0.70);
+$breakpoint-mobile: 430px;
+$breakpoint-large: 1080px;
+
+// Reset de estilos
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Estilos para o contêiner principal
+.plan-container {
+  padding: 0.5rem;
+  max-width: 500px;
+  margin: auto;
+
+  .plan-title {
+    font-size: 3rem;
+    color: $vivo-main;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .plan-details {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px $border-container;
+    margin-top: 1rem;
+  }
+
+  .data-usage {
+    background-color: #fff;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px $border-container;
+    margin-top: 1rem;
+    text-align: center;
+    position: relative; // para posicionar absolutamente o círculo
+  }
+
+  position: relative; // para posicionar absolutamente o círculo
+
+  .usage-circle {
+    width: 200px; // tamanho do círculo
+    height: 200px; // tamanho do círculo
+    border-radius: 50%; // tornar circular
+    border: 2px solid $border-container; // borda do círculo
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto; // centralizar na div
+    box-shadow: 0 2px 4px $border-container; // sombra opcional
+  }
+
+  .used-data {
+    font-size: 2rem; // tamanho da fonte dos dados utilizados
+    font-weight: bold;
+    margin: 0.5rem 0; // espaço entre o uso e o "de"
+  }
+
+  .total-data {
+    margin-bottom: 0.5rem; // espaço abaixo dos dados totais
+  }
+}
+
+// Estilos para o texto dos detalhes
+  .plan-name, .plan-number, .used-title, .used-data, .total-data {
+    margin: 0.5rem 0;
+    color: $text1-color;
+  }
+
+  .plan-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .used-data {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+// Estilos para versão mobile
+@media (max-width: $breakpoint-mobile) {
+    .plan-container {
+      padding: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+  
+      .layout_main {
+        margin-left: 0;
+        margin-right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+  
+      .plan-title, .plan-details, .data-usage {
+        margin: 0 auto;
+      }
+  
+      .usage-circle {
+        width: 150px;
+        height: 150px;
+        margin: 0;
+      }
+  
+      .used-data {
+        font-size: 1.5rem;
+      }
+  
+      // Adicione a regra a seguir se precisar que o texto dos detalhes esteja centralizado.
+      .plan-details, .data-usage {
+        text-align: center;
+      }
+    }
+}
+
+// Estilos para versão desktop
+@media (min-width: $breakpoint-large) {
+  .layout_main {
+    margin-left: 250px; // Ajuste conforme a largura da sua sidebar
+  }
+}

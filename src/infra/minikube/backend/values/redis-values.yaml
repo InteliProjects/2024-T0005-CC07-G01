@@ -1,0 +1,9 @@
+deployment:
+  name: redis-deployment
+app:
+  name: redis
+  image: guilhermenl/redis_api:latest
+  port: 8080
+  nodePort: 30080
+service:
+  name: redis-service

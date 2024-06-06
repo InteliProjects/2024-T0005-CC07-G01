@@ -1,0 +1,121 @@
+$main-container: #f5f5f5;
+$vivo-main: #660099;
+$border-container: rgba(0, 0, 0, 0.34);
+
+.sidebar {
+  width: 10%;
+  height: 83vh;
+  border-right: 2px solid rgba(0, 0, 0, 0.34);
+
+
+
+  @media (max-width: 430px) {
+    width: 100px; // Largura reduzida em telas menores
+    
+    .sidebar_nav {
+      .options-container a {
+        font-size: 14px; // Tamanho de fonte reduzido
+      }
+
+      .nimbus-title {
+        font-size: 20px; // Tamanho de fonte ajustado
+      }
+    }
+  }
+}
+
+.sidebar-short {
+  @media (max-width: 430px) {
+    width: 50px; // Ainda mais estreito no modo compacto
+  }
+}
+
+.sidebar {
+  width: 15%;
+  height: 83vh;
+  border-right: 2px solid rgba(0, 0, 0, 0.34);
+
+  .sidebar_nav {
+    width: 100%;
+    height: 100%;
+    background-color: $main-container;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px 20px 25px;
+
+    .back-logo {
+      display: flex;
+      justify-content: flex-end;
+
+      .logo {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+    }
+
+    .nimbus-container{
+        .nimbus-title{
+            font-size: 35px;
+            color: $vivo-main;
+        }
+    }
+
+    .options-container{
+      display: flex;
+      flex-direction: column;
+      margin-top: 40px;
+      
+      ul{
+        list-style-type: none;
+      }
+
+      li{
+        margin-bottom: 30px;
+      }
+
+      a{
+        text-decoration: none;
+        color: black;
+        font-size: 20px;
+        margin-bottom: 20px;
+        font-weight: 700;
+    
+      }
+      a:hover{
+        color: $vivo-main;
+      }
+
+      .li-container{
+            .star-icon{
+                margin-right: 10px;
+            }
+
+            
+    .button-logout{
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+      }
+    }
+  }
+}
+
+.sidebar-short{
+    width: 3.5%;
+    height: 83vh;
+    border-right: 2px solid rgba(0, 0, 0, 0.34);
+    background-color: $main-container;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .show-logo{
+        margin-top: 30px;
+        transform: scaleX(-1);
+        cursor: pointer;
+    }
+
+
+}

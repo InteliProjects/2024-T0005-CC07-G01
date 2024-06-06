@@ -1,0 +1,24 @@
+---
+services:
+  enderecos:
+    image: guijmoura/usuario_pf:latest 
+    container_name: usuarios_pf
+    environment:
+      - DATABASE_URL=jdbc:postgresql://nimbus-db-dev.c1qqeeoy8ta4.us-east-1.rds.amazonaws.com:5432/nimbus_db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=senha123
+      - SERVER_PORT=8085
+      - SERVER_URL=host.docker.internal
+      - SERVER_PORT_ENDERECOS=8081
+      - SERVER_PORT_USUARIOS=8084
+      - SERVER_PORT_PLANOS_USUARIOS=8083
+      - SERVER_PORT_PLANO=8082
+      
+    ports:
+      - 8085:8085
+
+    networks:
+      - nimbus_network
+networks:
+  nimbus_network:
+    external: true

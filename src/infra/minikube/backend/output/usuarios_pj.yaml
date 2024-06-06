@@ -1,0 +1,54 @@
+---
+# Source: BackendChart/templates/deployment.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: usuarios-pj-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: usuarios-pj
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: 8086
+      nodePort: 30086
+---
+# Source: BackendChart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usuarios-pj
+  labels:
+    app: usuarios-pj
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usuarios-pj
+  template:
+    metadata:
+      labels:
+        app: usuarios-pj
+    spec:
+      containers:
+        - name: usuarios-pj
+          image: guilhermenl/usuarios_pj:latest
+          ports:
+            - containerPort: 8086
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef: 
+                  name: backend-config-map
+                  key: dbUrl
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef: 
+                  name: backend-secret
+                  key: username 
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef: 
+                  name: backend-secret
+                  key: password

@@ -1,0 +1,140 @@
+$main-container: #f5f5f5;
+$vivo-main: #660099;
+$border-container: rgba(0, 0, 0, 0.12);
+$font-stack: 'Helvetica', 'Arial', sans-serif;
+
+// Reset de estilos
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: $font-stack;
+}
+
+// Estilos para o contêiner principal
+body {
+  background-color: $main-container;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.signup-header {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.signup-logo {
+  max-width: 150px; 
+  height: auto; 
+  margin-bottom: 2rem;
+}
+
+
+// Estilos para o contêiner de cadastro
+.signup-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px $border-container;
+  width: 100%;
+  margin: auto;
+
+  // Estilos para o título e os campos de entrada
+  .title {
+    color: $vivo-main;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  // Estilos para os campos de entrada
+  .input-container {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: $vivo-main;
+      font-size: 16px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 0.5rem;
+      border: 1px solid $border-container;
+      border-radius: 4px;
+    }
+  }
+
+  // Estilos para os botões
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .ortext {
+    text-align: center;
+    margin: 2rem 0;
+  }
+}
+
+// Botões individuais
+.button {
+  padding: 10px 30px;
+  background-color: $vivo-main;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    background-color: darken($vivo-main, 10%);
+  }
+}
+
+.title-signup-pf, .title-signup-pj {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.pf-container, .pj-container {
+  width: 100%; 
+}
+
+.button-container {
+  .button {
+    flex-basis: calc(50% - 10px); 
+    text-align: center;
+  }
+}
+
+.selection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+
+  .button {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .signup-header {
+    text-align: center;
+    padding: 1rem 0;
+  }
+  
+  .signup-logo {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+}

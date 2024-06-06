@@ -1,0 +1,9 @@
+deployment:
+  name: usuarios-pj-deployment
+app:
+  name: usuarios-pj
+  image: guilhermenl/usuarios_pj:latest
+  port: 8086
+  nodePort: 30086
+service:
+  name: usuarios-pj-service

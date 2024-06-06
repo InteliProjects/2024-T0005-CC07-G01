@@ -1,0 +1,19 @@
+---
+services:
+  planos_usuarios:
+    image: guilhermenl/planos_usuarios:latest 
+    container_name: planos_usuarios
+    environment:
+      - DATABASE_URL=jdbc:postgresql://nimbus-db-dev.c1qqeeoy8ta4.us-east-1.rds.amazonaws.com:5432/nimbus_db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=senha123
+      - SERVER_PORT=8083
+    ports:
+      - 8083:8083
+
+    networks:
+      - nimbus_network
+
+networks:
+  nimbus_network:
+    external: true

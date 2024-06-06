@@ -1,0 +1,123 @@
+$main-container: #f5f5f5;
+$vivo-main: #660099;
+$border-container: rgba(0, 0, 0, 0.34);
+$breakpoint-mobile: 430px;
+$breakpoint-medium: 992px; 
+$breakpoint-large: 1080px;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.head-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px; /* Adiciona um espaçamento interno de 20px em todos os lados */
+}
+
+.article-container {
+  width: 100%; /* Ocupa toda a largura em telas pequenas */
+  flex-direction: column;
+  margin-bottom: 20px; /* Espaçamento entre os elementos quando estão empilhados */
+}
+
+.article-text {
+  font-size: large;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+.button-tips {
+  width: max-content;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: $vivo-main;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.img {
+  width: 100%; /* Assegura que a imagem não exceda a largura da tela */
+  max-width: 350px; /* Largura máxima para não distorcer em telas maiores */
+  height: 100%; /* Mantém a proporção da imagem */
+}
+
+.body-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 20px;
+}
+
+@media (min-width: 431px) {
+  .head-container {
+    margin-left: 2rem;
+  }
+
+  .article-container {
+    width: 50%; /* Restaura a largura original para telas maiores */
+  }
+
+  .button-tips {
+    margin-top: 105px; /* Espaçamento original do botão */
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .head-container {
+    margin-right: 3rem;
+  }
+  
+  .sidebar {
+    display: none;
+  }
+  .bottom-navbar {
+    display: flex;
+  }
+}
+
+@media (min-width: $breakpoint-large) {
+  .sidebar {
+    display: block;
+    width: 250px;
+  }
+
+  .bottom-navbar {
+    display: none;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .head-container {
+    margin-right: 3rem;
+  }
+  
+  .sidebar {
+    display: none;
+  }
+  .bottom-navbar {
+    display: flex;
+  }
+}
+
+@media (min-width: $breakpoint-large) {
+  .sidebar {
+    display: block;
+    width: 250px;
+  }
+
+  .bottom-navbar {
+    display: none;
+  }
+}

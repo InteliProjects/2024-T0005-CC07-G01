@@ -1,0 +1,9 @@
+deployment:
+  name: enderecos-deployment
+app:
+  name: enderecos
+  image: guilhermenl/enderecos:latest
+  port: 8081
+  nodePort: 30081
+service:
+  name: enderecos-service

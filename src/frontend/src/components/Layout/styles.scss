@@ -1,0 +1,128 @@
+$main-container: #f5f5f5;
+$vivo-main: #660099;
+$border-container: rgba(0, 0, 0, 0.34);
+$breakpoint-mobile: 430px;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $main-container;
+
+  .side-home {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center; // Centraliza o conteúdo na tela
+  }
+
+  .layout_main {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    background-color: $main-container;
+  }
+
+  @media (min-width: 1080px) {
+    .side-home {
+      flex-direction: row;
+
+      .sidebar {
+        width: 250px;
+        min-width: 250px;
+        background-color: $vivo-main;
+        border-right: 2px solid $border-container;
+      }
+
+      .layout_main {
+        width: calc(100% - 250px);
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+}
+
+.bottom-navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $vivo-main; // Usa a cor principal da Vivo
+  height: 60px; // Altura da navbar
+  z-index: 1000; // Garante que a navbar fique acima de outros elementos
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+  }
+}
+
+.main-container {
+  padding-bottom: 60px; // Ajusta a altura da bottom-navbar
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .sidebar {
+    display: none;
+  }
+
+  .side-home {
+    padding-top: 0; // Remove o padding-top para telas pequenas
+  }
+
+  .layout_main {
+    display: auto; // Muda o display para auto em telas móveis
+  }
+}
+
+.bottom-navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $vivo-main;
+  height: 60px;
+  z-index: 1000;
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+  }
+}
+
+.main-container {
+  padding-bottom: 60px; // Ajusta a altura da bottom-navbar
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .sidebar {
+    display: none;
+  }
+
+  .side-home {
+    padding-top: 0; // Remove o padding-top para telas pequenas
+  }
+
+  .layout_main {
+    display: auto; // Muda o display para auto em telas móveis
+  }
+}
+
+

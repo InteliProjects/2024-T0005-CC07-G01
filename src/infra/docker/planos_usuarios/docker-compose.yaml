@@ -1,0 +1,12 @@
+---
+services:
+  planos_usuarios:
+    image: guilhermenl/planos_usuarios:latest 
+    container_name: planos_usuarios
+    environment:
+      - DATABASE_URL=<URL>
+      - DATABASE_USER=<USER>
+      - DATABASE_PASSWORD=<PASSWORD>
+      - SERVER_PORT=8083
+    ports:
+      - 8083:8083

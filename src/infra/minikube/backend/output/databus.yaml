@@ -1,0 +1,74 @@
+---
+# Source: BackendChart/templates/deployment.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: databus-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: databus
+  ports:
+    - protocol: TCP
+      port: 8090
+      targetPort: 8090
+      nodePort: 30090
+---
+# Source: BackendChart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: databus
+  labels:
+    app: databus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: databus
+  template:
+    metadata:
+      labels:
+        app: databus
+    spec:
+      containers:
+        - name: databus
+          image: guilhermenl/databus:latest
+          ports:
+            - containerPort: 8090
+          env:
+            - name: REDIS_API_URL
+              valueFrom:
+                configMapKeyRef: 
+                  name: backend-config-map
+                  key: redisApiUrl
+            - name: ENDERECOS_URL
+              valueFrom:
+                configMapKeyRef: 
+                  name: backend-config-map
+                  key: enderecosUrl
+            - name: PLANOS_URL
+              valueFrom:
+                configMapKeyRef: 
+                  name: backend-config-map
+                  key: planosUrl
+            - name: PLANOS_USUARIOS_URL
+              valueFrom:
+                configMapKeyRef: 
+                  name: backend-config-map
+                  key: planosUsuariosUrl
+            - name: USUARIOS_URL
+              valueFrom:
+                configMapKeyRef: 
+                  name: backend-config-map
+                  key: usuariosUrl
+            - name: USUARIOS_PF_URL
+              valueFrom:
+                configMapKeyRef: 
+                  name: backend-config-map
+                  key: usuariosPfUrl
+            - name: USUARIOS_PJ_URL
+              valueFrom:
+                configMapKeyRef: 
+                  name: backend-config-map
+                  key: usuariosPjUrl

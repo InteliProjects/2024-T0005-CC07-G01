@@ -1,0 +1,18 @@
+# The configMap file contains the database URL
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config-map 
+data:
+  # URL must follow the jdbc format (jdbc:postgresql://<host>:<port>/<db-name>)
+  dbUrl: <URL>
+  # URL must follow the standard format(<host>)
+  cacheUrl: <URL>
+  # URL must follow the standard format(<host>:<port>)
+  redisApiUrl: <URL>
+  enderecosUrl: <URL>
+  planosUrl: <URL>
+  planosUsuariosUrl: <URL>
+  usuariosUrl: <URL>
+  usuariosPfUrl: <URL>
+  usuariosPjUrl: <URL>

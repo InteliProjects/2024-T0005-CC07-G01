@@ -1,0 +1,53 @@
+# --- SECURITY GROUP CONFIGURATION ---
+# PrivateSG:
+#   Ingress:
+#     - ports: 8081 - 8086
+#       connection: PublicSG -> Group
+# PublicSG:
+#   Ingress:
+#     - ports: 80
+#       connection: Internet-> Group
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  nimbusPrivateAPISg:
+    Type: AWS::EC2::SecurityGroup
+    DependsOn: nimbusVpc
+    Properties:
+      GroupDescription: Allow internal connection
+      VpcId: !Ref nimbusVpc 
+      Tags:
+        - Key: stack
+          Value: production
+        - Key: Name
+          Value: nimbus-private-api-sg
+  ConnectPrivateAPIFrontend:
+    Type: AWS::EC2::SecurityGroupIngress
+    DependsOn: 
+      - nimbusPublicFrontendSg
+      - nimbusPrivateAPISg
+    Properties:
+      IpProtocol: tcp
+      FromPort: 8081
+      ToPort: 8086
+      SourceSecurityGroupId: !GetAtt nimbusPublicFrontendSg.GroupId
+      GroupId: !GetAtt nimbusPrivateAPISg.GroupId
+  nimbusPublicFrontendSg:
+    Type: AWS::EC2::SecurityGroup
+    DependsOn: nimbusVpc
+    Properties:
+      GroupDescription: Allow http to client host
+      VpcId: !Ref nimbusVpc 
+      Tags:
+        - Key: stack
+          Value: production
+        - Key: Name
+          Value: nimbus-public-frontend-sg
+  ConnectFrontendInternet:
+    Type: AWS::EC2::SecurityGroupIngress
+    DependsOn: nimbusPublicFrontendSg
+    Properties:
+      GroupId: !GetAtt nimbusPublicFrontendSg.GroupId
+      CidrIp: 0.0.0.0/0
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80

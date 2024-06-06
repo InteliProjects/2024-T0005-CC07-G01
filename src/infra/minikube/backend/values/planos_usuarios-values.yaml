@@ -1,0 +1,9 @@
+deployment:
+  name: planos-usuarios-deployment
+app:
+  name: planos-usuarios
+  image: guilhermenl/planos_usuarios:latest
+  port: 8083
+  nodePort: 30083
+service:
+  name: planos-usuarios-service

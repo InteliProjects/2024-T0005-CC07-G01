@@ -1,0 +1,19 @@
+---
+services:
+  enderecos:
+    image: guijmoura/usuario:latest 
+    container_name: usuarios 
+    environment:
+      - DATABASE_URL=jdbc:postgresql://nimbus-db-dev.c1qqeeoy8ta4.us-east-1.rds.amazonaws.com:5432/nimbus_db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=senha123
+      - SERVER_PORT=8084
+    ports:
+      - 8084:8084
+
+    networks:
+      - nimbus_network
+
+networks:
+  nimbus_network:
+    external: true

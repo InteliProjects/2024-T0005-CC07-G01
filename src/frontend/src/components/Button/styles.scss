@@ -1,0 +1,98 @@
+.button {
+    padding: 12px 24px;
+    background-color: #660099;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  
+    &:hover {
+      background-color: darken(#660099, 10%); 
+      transform: scale(1.05);
+    }
+  
+    &:active {
+      background-color: lighten(#660099, 10%);
+      transform: scale(0.95); 
+    }
+  
+    &:focus {
+      outline: 2px solid darken(#660099, 20%);
+      outline-offset: 2px;
+    }
+  
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  
+    // Para classes adicionais passadas por prop
+    &.primary {
+      background-color: #660099;
+      &:hover {
+        background-color: darken(#660099, 15%);
+      }
+    }
+  
+    &.secondary {
+      background-color: #fff;
+      color: #660099;
+      border: 1px solid #660099;
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+  }
+  
+.button {
+    padding: 12px 24px;
+    background-color: #660099; // Cor de fundo roxo da Vivo
+    color: #fff; // Texto branco
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  
+    &:hover {
+      background-color: darken(#660099, 10%); // Escurece o roxo quando passa o mouse
+      transform: scale(1.05); // Aumenta ligeiramente o botão
+    }
+  
+    &:active {
+      background-color: lighten(#660099, 10%); // Clareia o roxo quando clica
+      transform: scale(0.95); // Reduz ligeiramente o botão
+    }
+  
+    &:focus {
+      outline: 2px solid darken(#660099, 20%); // Contorno mais escuro para foco
+      outline-offset: 2px; // Espaçamento do contorno
+    }
+  
+    &:disabled {
+      background-color: #ccc; // Cor de fundo para estado desabilitado
+      cursor: not-allowed; // Cursor para indicar ação não permitida
+    }
+  
+    // Para classes adicionais passadas por prop
+    &.primary {
+      background-color: #660099;
+      &:hover {
+        background-color: darken(#660099, 15%);
+      }
+    }
+  
+    &.secondary {
+      background-color: #fff;
+      color: #660099;
+      border: 1px solid #660099;
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+  }
+  

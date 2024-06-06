@@ -1,0 +1,9 @@
+deployment:
+  name: databus-deployment
+app:
+  name: databus
+  image: guilhermenl/databus:latest
+  port: 8090
+  nodePort: 30090
+service:
+  name: databus-service

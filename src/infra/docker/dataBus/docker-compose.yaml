@@ -1,0 +1,16 @@
+---
+services:
+  databus:
+    image: guilhermenl/databus:latest 
+    container_name: databus
+    environment:
+      - REDIS_API_URL=http://<HOST>:<PORT>
+      - ENDERECOS_URL=http://<HOST>:<PORT>
+      - PLANOS_URL=http://<HOST>:<PORT>
+      - PLANOS_USUARIOS_URL=http://<HOST>:<PORT>
+      - USUARIOS_URL=http://<HOST>:<PORT>
+      - USUARIOS_PF_URL=http://<HOST>:<PORT>
+      - USUARIOS_PJ_URL=http://<HOST>:<PORT>
+      - SERVER_PORT=8090
+    ports:
+      - 8090:8090

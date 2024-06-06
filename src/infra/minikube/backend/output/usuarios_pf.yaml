@@ -1,0 +1,54 @@
+---
+# Source: BackendChart/templates/deployment.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: usuarios-pf-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: usuarios-pf
+  ports:
+    - protocol: TCP
+      port: 8085
+      targetPort: 8085
+      nodePort: 30085
+---
+# Source: BackendChart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usuarios-pf
+  labels:
+    app: usuarios-pf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usuarios-pf
+  template:
+    metadata:
+      labels:
+        app: usuarios-pf
+    spec:
+      containers:
+        - name: usuarios-pf
+          image: guilhermenl/usuarios_pf:latest
+          ports:
+            - containerPort: 8085
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef: 
+                  name: backend-config-map
+                  key: dbUrl
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef: 
+                  name: backend-secret
+                  key: username 
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef: 
+                  name: backend-secret
+                  key: password

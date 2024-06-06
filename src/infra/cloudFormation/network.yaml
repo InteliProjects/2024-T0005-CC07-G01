@@ -1,0 +1,159 @@
+# --- NETWORK CONFIGURATION ---
+# VPC:
+#   SubRegionA:
+#     - PrivateSubnet
+#       RouteTable:
+#         - Internet -> NATGW
+#     - PublicSubnet
+#       - NATGW
+#       RouteTable:
+#         - Internet -> IGW
+#   SubRegionB:
+#     - PrivateSubnet
+#       RouteTable:
+#         - Internet -> NATGW
+#     - PublicSubnet
+#       - NATGW
+#       RouteTable:
+#         - Internet -> IGW
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  nimbusVpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: "true"
+      EnableDnsHostnames: "true"
+      Tags:
+        - Key: stack
+          Value: production
+        - Key: Name
+          Value: nimbus-vpc
+  nimbusPrivateSubnetEastOneA:
+    Type: AWS::EC2::Subnet
+    DependsOn: nimbusVpc
+    Properties:
+      VpcId:
+        Ref: nimbusVpc
+      CidrBlock: 10.0.1.0/24
+      AvailabilityZone: us-east-1a
+      Tags:
+        - Key: stack
+          Value: production
+        - Key: Name
+          Value: nimbus-private-subnet-east-1a
+  nimbusPrivateSubnetEastOneB:
+    Type: AWS::EC2::Subnet
+    DependsOn: nimbusVpc
+    Properties:
+      VpcId:
+        Ref: nimbusVpc
+      CidrBlock: 10.0.2.0/24
+      AvailabilityZone: us-east-1b
+      Tags:
+        - Key: stack
+          Value: production
+        - Key: Name
+          Value: nimbus-private-subnet-east-1b
+  nimbusNatgw:
+    Type: AWS::EC2::NatGateway
+    DependsOn: 
+      - nimbusNatEip
+      - nimbusPublicSubnetEastOneA 
+    Properties:
+      AllocationId: !GetAtt nimbusNatEip.AllocationId
+      SubnetId: !Ref nimbusPublicSubnetEastOneA
+      Tags:
+        - Key: stack
+          Value: production
+        - Key: Name
+          Value: nimbus-natgw
+  nimbusNatEip:
+    Type: AWS::EC2::EIP
+    DependsOn: nimbusVpc
+    Properties:
+      Domain: nimbusVpc
+  nimbusPrivateRt:
+    Type: AWS::EC2::RouteTable
+    DependsOn: nimbusVpc
+    Properties:
+      VpcId:
+        Ref: nimbusVpc
+      Tags:
+        - Key: stack
+          Value: production
+        - Key: Name
+          Value: nimbus-private-rt
+  routeNat:
+    Type: AWS::EC2::Route
+    DependsOn:
+      - nimbusNatgw
+      - nimbusPrivateRt
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref nimbusNatgw
+      RouteTableId: !Ref nimbusPrivateRt
+  nimbusPublicSubnetEastOneA:
+    Type: AWS::EC2::Subnet
+    DependsOn: nimbusVpc
+    Properties:
+      VpcId:
+        Ref: nimbusVpc
+      CidrBlock: 10.0.3.0/24
+      AvailabilityZone: us-east-1a
+      Tags:
+        - Key: stack
+          Value: production
+        - Key: Name
+          Value: nimbus-public-subnet-east-1a
+  nimbusPublicSubnetEastOneB:
+    Type: AWS::EC2::Subnet
+    DependsOn: nimbusVpc
+    Properties:
+      VpcId:
+        Ref: nimbusVpc
+      CidrBlock: 10.0.4.0/24
+      AvailabilityZone: us-east-1b
+      Tags:
+        - Key: stack
+          Value: production
+        - Key: Name
+          Value: nimbus-public-subnet-east-1b
+  nimbusIgw:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: stack
+          Value: production
+        - Key: Name
+          Value: nimbus-igw
+  attachIgw:
+    Type: AWS::EC2::VPCGatewayAttachment
+    DependsOn:
+      - nimbusVpc
+      - nimbusIgw
+    Properties:
+      VpcId:
+        Ref: nimbusVpc
+      InternetGatewayId:
+        Ref: nimbusIgw
+  nimbusPublicRt:
+    Type: AWS::EC2::RouteTable
+    DependsOn: nimbusVpc
+    Properties:
+      VpcId:
+        Ref: nimbusVpc
+      Tags:
+        - Key: stack
+          Value: production
+        - Key: Name
+          Value: nimbus-public-rt
+  routeIgw:
+    Type: AWS::EC2::Route
+    DependsOn:
+      - nimbusIgw
+      - nimbusPublicRt
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref nimbusIgw
+      RouteTableId: !Ref nimbusPublicRt

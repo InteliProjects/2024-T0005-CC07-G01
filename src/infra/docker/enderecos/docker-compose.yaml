@@ -1,0 +1,12 @@
+---
+services:
+  enderecos:
+    image: guilhermenl/enderecos:latest 
+    container_name: enderecos
+    environment:
+      - DATABASE_URL=<URL>
+      - DATABASE_USER=<USER>
+      - DATABASE_PASSWORD=<PASSWORD>
+      - SERVER_PORT=8081
+    ports:
+      - 8081:8081

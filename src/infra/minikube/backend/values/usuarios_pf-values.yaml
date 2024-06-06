@@ -1,0 +1,9 @@
+deployment:
+  name: usuarios-pf-deployment
+app:
+  name: usuarios-pf
+  image: guilhermenl/usuarios_pf:latest
+  port: 8085
+  nodePort: 30085
+service:
+  name: usuarios-pf-service

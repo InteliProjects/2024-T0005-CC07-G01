@@ -1,0 +1,54 @@
+.input-field {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 8px;
+  
+    &:focus {
+      border-color: #660099; 
+      box-shadow: 0 0 0 2px rgba(102, 0, 153, 0.2); 
+      outline: none;
+    }
+  
+    &.error-field {
+      border-color: #ff3860; 
+    }
+  }
+  
+  .error {
+    color: #ff3860; 
+    font-size: 14px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+.input-field {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc; // cor da borda padrão
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 8px; // espaço entre os campos de entrada
+  
+    &:focus {
+      border-color: #660099; // altera a cor da borda para roxo ao focar
+      box-shadow: 0 0 0 2px rgba(102, 0, 153, 0.2); // adiciona um box shadow para destacar o campo
+      outline: none; // remove o contorno padrão do navegador
+    }
+  
+    &.error-field {
+      border-color: #ff3860; // altera a cor da borda para vermelho se houver erro
+    }
+  }
+  
+  .error {
+    color: #ff3860; // cor do texto do erro
+    font-size: 14px;
+    margin-top: -5px;
+    margin-bottom: 10px; // espaço após a mensagem de erro
+    text-align: left;
+  }
+  

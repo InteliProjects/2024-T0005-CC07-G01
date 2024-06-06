@@ -1,0 +1,12 @@
+---
+services:
+  enderecos:
+    image: guilhermenl/usuarios_pf:latest 
+    container_name: usuarios_pf
+    environment:
+      - DATABASE_URL=jdbc:postgresql://nimbus-db-dev.c1qqeeoy8ta4.us-east-1.rds.amazonaws.com:5432/nimbus_db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=123
+      - SERVER_PORT=8085
+    ports:
+      - 8085:8085

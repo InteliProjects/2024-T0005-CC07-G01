@@ -1,0 +1,54 @@
+---
+# Source: BackendChart/templates/deployment.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: planos-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: planos
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+      nodePort: 30082
+---
+# Source: BackendChart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: planos
+  labels:
+    app: planos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: planos
+  template:
+    metadata:
+      labels:
+        app: planos
+    spec:
+      containers:
+        - name: planos
+          image: guilhermenl/planos:latest
+          ports:
+            - containerPort: 8082
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef: 
+                  name: backend-config-map
+                  key: dbUrl
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef: 
+                  name: backend-secret
+                  key: username 
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef: 
+                  name: backend-secret
+                  key: password

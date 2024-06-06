@@ -1,0 +1,9 @@
+deployment:
+  name: usuarios-deployment
+app:
+  name: usuarios
+  image: guilhermenl/usuarios:latest
+  port: 8084
+  nodePort: 30084
+service:
+  name: usuarios-service
